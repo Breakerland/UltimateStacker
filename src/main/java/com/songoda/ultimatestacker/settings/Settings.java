@@ -22,6 +22,12 @@ public class Settings {
     public static final ConfigSetting DISABLED_WORLDS = new ConfigSetting(config, "Main.Disabled Worlds", Arrays.asList("World1", "World2", "World3"),
             "Worlds that stacking doesn't happen in.");
 
+    public static final ConfigSetting JOBS_HOOK_PREVENT = new ConfigSetting(config, "Jobs Reborn.Prevent Exp", true,
+            "Support for the for prevention of job rewards.");
+
+    public static final ConfigSetting JOBS_HOOK_EXP = new ConfigSetting(config, "Jobs Reborn.Correct Exp Amount", true,
+            "Support for the correct exp amount for stacked entities.");
+
     // Note: this setting is also referenced in EpicSpawners
     public static final ConfigSetting STACK_ENTITIES = new ConfigSetting(config, "Entities.Enabled", true,
             "Should entities be stacked?");

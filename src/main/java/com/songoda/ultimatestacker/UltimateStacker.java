@@ -1,5 +1,26 @@
 package com.songoda.ultimatestacker;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.CreatureSpawner;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.plugin.PluginManager;
+
 import com.songoda.core.SongodaCore;
 import com.songoda.core.SongodaPlugin;
 import com.songoda.core.commands.CommandManager;
@@ -26,7 +47,17 @@ import com.songoda.ultimatestacker.entity.EntityStack;
 import com.songoda.ultimatestacker.entity.EntityStackManager;
 import com.songoda.ultimatestacker.hook.StackerHook;
 import com.songoda.ultimatestacker.hook.hooks.JobsHook;
-import com.songoda.ultimatestacker.listeners.*;
+import com.songoda.ultimatestacker.listeners.BlockListeners;
+import com.songoda.ultimatestacker.listeners.BreedListeners;
+import com.songoda.ultimatestacker.listeners.ClearLagListeners;
+import com.songoda.ultimatestacker.listeners.DeathListeners;
+import com.songoda.ultimatestacker.listeners.EntityListeners;
+import com.songoda.ultimatestacker.listeners.InteractListeners;
+import com.songoda.ultimatestacker.listeners.ItemListeners;
+import com.songoda.ultimatestacker.listeners.ShearListeners;
+import com.songoda.ultimatestacker.listeners.SheepDyeListeners;
+import com.songoda.ultimatestacker.listeners.SpawnerListeners;
+import com.songoda.ultimatestacker.listeners.TameListeners;
 import com.songoda.ultimatestacker.lootables.LootablesManager;
 import com.songoda.ultimatestacker.settings.Settings;
 import com.songoda.ultimatestacker.spawner.SpawnerStack;
@@ -37,24 +68,6 @@ import com.songoda.ultimatestacker.storage.types.StorageYaml;
 import com.songoda.ultimatestacker.tasks.StackingTask;
 import com.songoda.ultimatestacker.utils.EntityUtils;
 import com.songoda.ultimatestacker.utils.Methods;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.CreatureSpawner;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.PluginManager;
 
 public class UltimateStacker extends SongodaPlugin {
 
@@ -243,10 +256,18 @@ public class UltimateStacker extends SongodaPlugin {
             });
         }, 20L);
     }
+   
+    public void addTrait(Entity entity) {
+        for (StackerHook stackerHook : stackerHooks) {
+        	if (stackerHook.prevent())
+        		stackerHook.setTrait(entity);
+        }
+    }
 
     public void addExp(Player player, EntityStack stack) {
         for (StackerHook stackerHook : stackerHooks) {
-            stackerHook.applyExperience(player, stack);
+        	if (!stackerHook.prevent() && stackerHook.correctAmount())
+        		stackerHook.applyExperience(player, stack);
         }
     }
 

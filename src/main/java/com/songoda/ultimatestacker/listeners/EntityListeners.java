@@ -43,6 +43,7 @@ public class EntityListeners implements Listener {
 	public void onSpawn(CreatureSpawnEvent event) {
 		LivingEntity entity = event.getEntity();
 		entity.setMetadata("US_REASON", new FixedMetadataValue(plugin, event.getSpawnReason().name()));
+		plugin.addTrait(entity);
 
 		if (event.getSpawnReason().name().equals("DROWNED") || event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.LIGHTNING) {
 			String name = event.getEntity().getCustomName();
