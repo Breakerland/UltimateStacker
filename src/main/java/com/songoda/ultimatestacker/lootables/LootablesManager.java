@@ -1,21 +1,30 @@
 package com.songoda.ultimatestacker.lootables;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Ageable;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Sheep;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+
 import com.songoda.core.compatibility.CompatibleMaterial;
 import com.songoda.core.compatibility.ServerVersion;
 import com.songoda.lootables.Lootables;
 import com.songoda.lootables.Modify;
-import com.songoda.lootables.loot.*;
+import com.songoda.lootables.loot.Drop;
+import com.songoda.lootables.loot.Loot;
+import com.songoda.lootables.loot.LootBuilder;
+import com.songoda.lootables.loot.LootManager;
+import com.songoda.lootables.loot.Lootable;
 import com.songoda.ultimatestacker.UltimateStacker;
 import com.songoda.ultimatestacker.settings.Settings;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.*;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LootablesManager {
 
