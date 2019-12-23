@@ -251,9 +251,10 @@ public class UltimateStacker extends SongodaPlugin {
             final boolean useHolo = Settings.SPAWNER_HOLOGRAMS.getBoolean();
             this.dataManager.getSpawners((spawners) -> {
                 this.spawnerStackManager.addSpawners(spawners);
-                if (useHolo)
-                    loadHolograms();
             });
+
+            if (useHolo)
+                loadHolograms();
         }, 20L);
     }
    

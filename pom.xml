@@ -90,10 +90,6 @@
     </build>
     <repositories>
         <repository>
-            <id>private</id>
-            <url>http://repo.songoda.com/artifactory/private/</url>
-        </repository>
-        <repository>
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public</url>
         </repository>
@@ -117,7 +113,7 @@
         <dependency>
             <groupId>com.songoda</groupId>
             <artifactId>SongodaCore</artifactId>
-            <version>LATEST</version>
+            <version>2.2.10</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
